@@ -1,0 +1,36 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>dev.gaphunter.jenkinsfilecompanion</id>
+    <name>Jenkinsfile Companion</name>
+    <vendor>Gap Hunter Labs</vendor>
+    <description><![CDATA[
+        <p>Real Groovy syntax highlighting for <code>Jenkinsfile</code> (no
+        extension needed) plus two genuine structural checks: a stage name
+        defined more than once, and a stage with no <code>steps</code>/
+        <code>parallel</code>/<code>stages</code> block -- a real, silent
+        no-op that Jenkins itself won't warn you about.</p>
+        <p>100% local, zero network calls, checked entirely against the
+        Jenkinsfile already open in the editor -- never a live Jenkins
+        server connection. Built from real evidence: the leading paid
+        Jenkinsfile plugin has 31% of reviews at 3 stars or fewer (hover-info
+        conflicts, broken code formatting after an IDE update), and a
+        separate free/abandoned competitor's core design flaw is validating
+        by connecting to a live Jenkins server instead of locally -- exactly
+        the class of fragility this plugin exists to avoid.</p>
+        <p>Free. No license nags, no telemetry, no popups.</p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.intellij.groovy</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeOverrider implementation="dev.gaphunter.jenkinsfilecompanion.detection.JenkinsfileTypeOverrider"/>
+        <annotator language="Groovy" implementationClass="dev.gaphunter.jenkinsfilecompanion.highlighting.JenkinsfileAnnotator"/>
+        <applicationService serviceImplementation="dev.gaphunter.jenkinsfilecompanion.settings.JenkinsfileCompanionSettings"/>
+        <applicationConfigurable
+            parentId="tools"
+            instance="dev.gaphunter.jenkinsfilecompanion.settings.JenkinsfileCompanionConfigurable"
+            id="dev.gaphunter.jenkinsfilecompanion.settings.JenkinsfileCompanionConfigurable"
+            displayName="Jenkinsfile Companion"/>
+    </extensions>
+</idea-plugin>
