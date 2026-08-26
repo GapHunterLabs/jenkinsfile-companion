@@ -24,6 +24,7 @@
     <depends>org.intellij.groovy</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="Jenkinsfile Companion" displayType="BALLOON"/>
         <fileTypeOverrider implementation="dev.gaphunter.jenkinsfilecompanion.detection.JenkinsfileTypeOverrider"/>
         <annotator language="Groovy" implementationClass="dev.gaphunter.jenkinsfilecompanion.highlighting.JenkinsfileAnnotator"/>
         <applicationService serviceImplementation="dev.gaphunter.jenkinsfilecompanion.settings.JenkinsfileCompanionSettings"/>
