@@ -14,6 +14,7 @@ import dev.gaphunter.jenkinsfilecompanion.validate.JenkinsfileDocument
 import dev.gaphunter.jenkinsfilecompanion.validate.SourceRef
 import dev.gaphunter.jenkinsfilecompanion.validate.StageDef
 import dev.gaphunter.jenkinsfilecompanion.validate.StageMissingStepsValidator
+import dev.gaphunter.jenkinsfilecompanion.review.ReviewPrompt
 import org.jetbrains.plugins.groovy.lang.psi.GroovyFile
 import org.jetbrains.plugins.groovy.lang.psi.api.statements.expressions.GrCall
 import org.jetbrains.plugins.groovy.lang.psi.api.statements.expressions.GrMethodCall
@@ -59,6 +60,8 @@ class JenkinsfileAnnotator : Annotator {
         for (finding in findings) {
             val target = elementsByKey[finding.location.elementKey] ?: continue
             holder.newAnnotation(HighlightSeverity.WARNING, finding.message).range(target.textRange).create()
+            val lineNumber = file.viewProvider.document?.getLineNumber(target.textRange.startOffset)?.plus(1) ?: 0
+            ReviewPrompt.recordHit(file.project, "${file.virtualFile?.path}:$lineNumber:${finding.message}")
         }
     }
 
