@@ -118,6 +118,40 @@ class JenkinsfileAnnotatorTest : BasePlatformTestCase() {
         )
     }
 
+    fun testDoesNotFlagAStageThatOnlyNestsAMatrixBlock() {
+        myFixture.configureByText(
+            "Jenkinsfile",
+            """
+            pipeline {
+                agent any
+                stages {
+                    stage('Build Matrix') {
+                        matrix {
+                            axes {
+                                axis {
+                                    name 'PLATFORM'
+                                    values 'linux', 'windows'
+                                }
+                            }
+                            stages {
+                                stage('Build') {
+                                    steps {
+                                        sh 'make build'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            """.trimIndent(),
+        )
+        assertTrue(
+            "the outer stage nests matrix{} so it must not be flagged as empty, got: ${warnings()}",
+            warnings().none { it.contains("Build Matrix") },
+        )
+    }
+
     fun testDoesNotAnnotateAGroovyFileThatIsNotNamedJenkinsfile() {
         myFixture.configureByText(
             "Utils.groovy",

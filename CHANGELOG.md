@@ -4,6 +4,16 @@
 
 ## [Unreleased]
 
+## [0.2.0]
+
+### Fixed
+
+- The stage-missing-steps check no longer flags a stage containing
+  only a `matrix {}` block -- Declarative Pipeline's real directive for
+  running nested stages once per axis combination, previously a false
+  positive since it has no direct `steps`/`stages`/`parallel` of its
+  own.
+
 ## [0.1.1]
 
 ### Added
@@ -25,6 +35,7 @@
   (a silent no-op).
 - Per-rule toggles under Settings > Tools > Jenkinsfile Companion.
 
-[Unreleased]: https://github.com/GapHunterLabs/jenkinsfile-companion/compare/0.1.1...HEAD
+[Unreleased]: https://github.com/GapHunterLabs/jenkinsfile-companion/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/GapHunterLabs/jenkinsfile-companion/compare/0.1.1...0.2.0
 [0.1.1]: https://github.com/GapHunterLabs/jenkinsfile-companion/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/GapHunterLabs/jenkinsfile-companion/commits/0.1.0
