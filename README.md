@@ -49,9 +49,9 @@ assumptions. Two independent signals in this exact space:
   so it cannot reproduce that exact failure mode.
 - **Two checks, both genuinely structural facts, not guesses:** a
   stage name defined more than once (confusing at best — which run in
-  the Jenkins UI is "Build"?), and a stage with neither a `steps {}`
-  block nor a nested `stages {}`/`parallel {}` block (a real, silent
-  no-op Jenkins itself won't warn about).
+  the Jenkins UI is "Build"?), and a stage with none of a `steps {}`,
+  a nested `stages {}`/`parallel {}` block, or a `matrix {}` block (a
+  real, silent no-op Jenkins itself won't warn about).
 - **v1 scope cuts, deliberate:** Declarative Pipeline syntax only
   (`pipeline { ... }`); Scripted Pipeline (`node { ... }`) is a
   materially different, more free-form structure and is out of scope

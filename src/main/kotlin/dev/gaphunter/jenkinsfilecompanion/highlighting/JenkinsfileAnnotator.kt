@@ -26,6 +26,12 @@ private const val STEPS_KEYWORD = "steps"
 private const val STAGES_KEYWORD = "stages"
 private const val PARALLEL_KEYWORD = "parallel"
 
+// Declarative Pipeline's matrix directive -- a stage containing only a
+// `matrix { axes {...} stages {...} }` block does real work (runs its
+// nested stages once per axis combination) with no direct steps/stages/
+// parallel block of its own, so it must count the same way those do.
+private const val MATRIX_KEYWORD = "matrix"
+
 /**
  * Fires once per file (on the file's root PSI element), gated by
  * [JenkinsfileDetector] -- never by FileType identity alone (same
@@ -87,7 +93,7 @@ class JenkinsfileAnnotator : Annotator {
         val ownStatements = PsiTreeUtil.findChildrenOfType(body, GrMethodCall::class.java)
             .filter { nearestEnclosingStage(it) === call }
         val hasSteps = ownStatements.any { methodName(it) == STEPS_KEYWORD }
-        val hasNestedStagesOrParallel = ownStatements.any { methodName(it) in setOf(STAGES_KEYWORD, PARALLEL_KEYWORD) }
+        val hasNestedStagesOrParallel = ownStatements.any { methodName(it) in setOf(STAGES_KEYWORD, PARALLEL_KEYWORD, MATRIX_KEYWORD) }
 
         val key = remember(elementsByKey, nameLiteral)
         return StageDef(name, hasSteps, hasNestedStagesOrParallel, SourceRef(key))
