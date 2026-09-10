@@ -9,3 +9,4 @@ node_modules
 
 # Groovy SDK jars the sandbox auto-downloads into demo/ on runIde
 demo/lib/
+*.iml
