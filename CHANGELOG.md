@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+## [0.2.1]
+
+### Fixed
+
+- Review/star CTA now links to this plugin's own Marketplace
+  reviews page instead of the vendor's generic plugin list.
+
 ## [0.2.0]
 
 ### Fixed
@@ -35,7 +42,8 @@
   (a silent no-op).
 - Per-rule toggles under Settings > Tools > Jenkinsfile Companion.
 
-[Unreleased]: https://github.com/GapHunterLabs/jenkinsfile-companion/compare/0.2.0...HEAD
+[Unreleased]: https://github.com/GapHunterLabs/jenkinsfile-companion/compare/0.2.1...HEAD
+[0.2.1]: https://github.com/GapHunterLabs/jenkinsfile-companion/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/GapHunterLabs/jenkinsfile-companion/compare/0.1.1...0.2.0
 [0.1.1]: https://github.com/GapHunterLabs/jenkinsfile-companion/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/GapHunterLabs/jenkinsfile-companion/commits/0.1.0
