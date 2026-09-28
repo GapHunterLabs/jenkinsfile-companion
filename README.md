@@ -4,6 +4,12 @@ IntelliJ-family plugin. Real Groovy syntax highlighting for
 `Jenkinsfile` plus two genuine structural checks — 100% local, zero
 network calls, never a live Jenkins server connection.
 
+![Jenkinsfile Companion: Catch the Jenkinsfile mistakes Jenkins itself never warns about](docs/media/hero.gif)
+
+Each feature on its own:
+[Duplicate stages](docs/media/01-duplicate-stage.gif) ·
+[Stages with no steps](docs/media/02-empty-stage.gif)
+
 ## Why it exists
 
 Born from real evidence in JetBrains Marketplace reviews, not
