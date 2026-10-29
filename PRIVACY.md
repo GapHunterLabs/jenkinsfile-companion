@@ -48,4 +48,4 @@ noted in the plugin's `CHANGELOG.md`.
 
 ## Contact
 
-Questions about this policy: **gaphunterlabs@gmail.com**
+Questions about this policy: **contact@gaphunterlabs.com**
